@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全局组件</title>
+</head>
+<body>
+<div id="app">
+    <com></com>
+</div>
+
+<script src="vue/vue.min.js"></script>
+<script>
+    //1.组件的定义 组件就是一个普通的js对象
+    let com = {
+        template:`
+        <div>
+            <h3>这是一个组件</h3>
+            <input type="button" value="点我" @click="clickMe">
+        </div>
+        `,
+        methods:{
+          clickMe(){
+            alert()
+          },
+        },
+        created:function () {
+            alert("数据复制完成")
+        }
+
+    }
+    //2.组件的注册 全局注册 局部注册
+    //Vue.component("组件注册后的名称","要注册的组件对象")
+    Vue.component("com",com)
+    new Vue({
+        el:"#app",
+        data:{},
+    })
+
+</script>
+</body>
+</html>

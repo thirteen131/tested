@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props属性</title>
+    <style>
+        .aa{
+            color: red;
+        }
+        .bb{
+            color: gold;
+        }
+        .cc{
+            color: cyan;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <com user="tom" color="cc"></com>
+    <com user="jack" color="aa"></com>
+    <com user="scry" color="bb"></com>
+</div>
+<script src="vue/vue.min.js"></script>
+<script>
+    let com = {
+        template:`
+        <div :class='color'>
+            这是我的com组件==={{user}}
+        </div>
+        `,
+        //接受参数
+        props:["color","user"],
+    }
+    new Vue({
+        el:"#app",
+        data:{},
+        //注册局部组件
+        components:{
+            "com":com,
+        }
+    })
+</script>
+</body>
+</html>

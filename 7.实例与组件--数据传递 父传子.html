@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据传递--父传子</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="username">
+        <br>
+        vue实例数据:{{username}}
+        <hr>
+        <span>com组件获取vue事件组件数据</span>
+        <com :test="username"></com>
+    </div>
+    <script src="vue/vue.min.js"></script>
+    <script>
+        /**
+         * 父传子实现：
+         * 1.子需要接受父的数据变量
+         *      使用props接受数据
+         * 2.显示父数据
+         *      在子组件后以:(在props接受的数据名)=“父数据变量名”
+         * **/
+        //局部组件
+        let com = {
+            template:`
+            <div>
+                接受vue实例数据:{{test}}
+            </div>
+            `,
+            //传递参数
+            props:["test"]
+        }
+        new Vue({
+            el:"#app",
+            data:{
+                username:""
+            },
+            //组件注册
+            components:{
+                "com":com,
+            },
+        })
+    </script>
+</body>
+</html>

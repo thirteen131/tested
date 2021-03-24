@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>路由使用</title>
+</head>
+<body>
+    <div id="app">
+        <h3>主页的页头</h3>
+        <hr>
+        <!--定义用户发起访问不同组件的连接，通过to='/路由地址'来指定当前标签要访问的组件-->
+        <router-link to="/com">访问系统首页</router-link>
+        <router-link to="/second">访问学生</router-link>
+        <!--指定路由出现的位置-->
+        <router-view></router-view>
+
+    </div>
+    <script src="vue/vue.min.js"></script>
+    <script src="vue/vue-router.js"></script>
+    <script>
+        //创建子组件
+        let com = {
+            template:`
+                <div>
+                    学生信息管理系统
+                </div>
+            `,
+        }
+        let second ={
+            template:`
+                <div>
+                    学生信息
+                </div>
+            `,
+        }
+        //创建路由
+        let myRouter = new VueRouter({
+            routes:[
+                {path:"/com",component:com},
+                {path:"/second",component:second},
+            ]
+        })
+        new Vue({
+            el:"#app",
+            data:{
+                username:"小黑",
+            },
+            methods: {
+
+            },
+            //注册组件
+            components:{
+                "com":com,
+                "second":second,
+            },
+            router:myRouter,
+        })
+    </script>
+</body>
+</html>

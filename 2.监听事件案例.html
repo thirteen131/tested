@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>监听案例</title>
+</head>
+<body>
+<div id="app">
+    姓名： <input type="text" v-model="allName"><br>
+    <hr>
+    姓: <span>{{startName}}</span> <br>
+    名: <span>{{endName}}</span>
+    <hr>
+    姓：<input type="text" v-model="firstName">
+    名：<input type="text" v-model="secondName">
+    <hr>
+    姓名：<span>{{name}}</span>
+</div>
+<script src="vue/vue.min.js"></script>
+<script>
+    /**
+     * 使用watch来实现姓 名的分割
+     * */
+    new Vue({
+        el:"#app",
+        data:{
+            allName:"",
+            startName:"",
+            endName:"",
+
+            firstName:"",
+            secondName:"",
+        },
+        computed:{
+            name(){
+                return this.firstName + this.secondName;
+            }
+        },
+        watch:{
+            allName(){
+              strsplit = this.allName.split(" ");
+              this.startName = strsplit[0];
+              this.endName = strsplit[1];
+            },
+        },
+    })
+</script>
+</body>
+</html>

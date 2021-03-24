@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>子传父</title>
+</head>
+<body>
+    <div id="app">
+        <h3>这是父组件的数据:{{username}}</h3>
+        <hr>
+        <com @btn="clickMe"></com>
+    </div>
+    <script src="vue/vue.min.js"></script>
+    <script>
+        /**
+         * 子传父实现:
+         * 1.将子的数据变量提交给自定义事件，然后绑定给父组件
+         *      定义自定义事件--一个方法
+         *          方法内：this.$emit("自定义名","传递的数据")
+         *          @子组件提交事件名=“父组件内部的事件方法”
+         * 2.父接受数据
+         *      定义一个有参方法，将获取到的参数赋值给需要接收的变量
+         * **/
+        //注册组件
+        let com={
+            template:`
+            <div>
+                这是子组件
+                <br>
+                <button @click="clickBtn">按钮</button>
+            </div>
+            `,
+            methods:{
+                clickBtn(){
+                    this.$emit("btn","hello world")
+                },
+            },
+        }
+        new Vue({
+            el:"#app",
+            data:{
+                username:"小黑",
+            },
+            methods:{
+                clickMe(name){
+                    this.username=name;
+                },
+            },
+            //注册组件
+            components:{
+                "com":com,
+            },
+        })
+    </script>
+</body>
+</html>
